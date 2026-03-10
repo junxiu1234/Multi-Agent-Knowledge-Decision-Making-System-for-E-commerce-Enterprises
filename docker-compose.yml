@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis/redis-stack-server:7.2.0-v9  # 或 redis:8
+    container_name: my-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+  app:
+    build: .
+    container_name: my-app
+    ports:
+      - "8501:8501"
+    depends_on:
+      - redis
+    environment:
+      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY}  # 如果有环境变量，从 .env 读
+    volumes:
+      - .:/app
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0
+
+volumes:
+  redis-data:

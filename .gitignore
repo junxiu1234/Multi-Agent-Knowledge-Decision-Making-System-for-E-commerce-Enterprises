@@ -1,0 +1,25 @@
+# Python 虚拟环境和缓存
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Chroma 向量数据库数据（很大，别上传）
+chroma_db/
+*.chroma
+collection/
+
+# 日志和临时文件
+*.log
+.streamlit/
+*.cache
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 其他大文件或敏感文件
+*.env
+DASHSCOPE_API_KEY
